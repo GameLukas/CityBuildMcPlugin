@@ -17,6 +17,7 @@ import at.gamelukas.citybuild.commands.Warps;
 import at.gamelukas.citybuild.commands.Wartung;
 import at.gamelukas.citybuild.commands.addAkte;
 import at.gamelukas.citybuild.commands.readAkte;
+import at.gamelukas.citybuild.listener.DeathListener;
 import at.gamelukas.citybuild.listener.JoinListener;
 
 
@@ -78,6 +79,7 @@ public class Main extends JavaPlugin {
 		
 		
 		Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
+		Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
 		
 
 		
