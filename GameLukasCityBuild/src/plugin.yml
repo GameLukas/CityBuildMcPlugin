@@ -1,0 +1,25 @@
+main: at.gamelukas.citybuild.main.Main
+name: GameLukasCityBuild
+author: GameLukas
+version: 0.0.1
+commands:
+   setspawn:
+      description: Der Command setzt den Spawn
+   spawn:
+      description: Teleportiert dich zum Spawn
+   silentjoin: 
+      description: Silentjoin
+   setwarp:
+      description: Setwarp
+   warp:
+      description: Warp
+   addAkte:
+      description: addAkte
+   readakte:
+      description: readakte
+   sign:
+      description: Signt etwas
+   warps:
+      description: Warps
+   wartung:
+      description: Wartung
