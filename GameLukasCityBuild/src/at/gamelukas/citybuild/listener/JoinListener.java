@@ -70,7 +70,7 @@ public class JoinListener implements Listener {
 		Player p = e.getPlayer();
 		
 		if (cmd[0].startsWith("bukkit") || cmd[0].startsWith("pl") || cmd[0].startsWith("?") || cmd[0].startsWith("help") || cmd[0].startsWith("spigot") || cmd[0].startsWith("version") || cmd[0].startsWith("pex")  || cmd[0].startsWith("server")) {
-			if (!p.isOp()) {
+			if (!p.isOp() || !p.hasPermission("CB.cmd.use")) {
 				p.sendMessage(config.getString("prefix") + "§cDu darfst diesen Command nicht verwenden!");
 				e.setCancelled(true);
 			}
