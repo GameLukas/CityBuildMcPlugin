@@ -1,10 +1,12 @@
 package at.gamelukas.citybuild.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import at.gamelukas.citybuild.commands.SetSpawn;
@@ -12,11 +14,13 @@ import at.gamelukas.citybuild.commands.SetWarp;
 import at.gamelukas.citybuild.commands.Sign;
 import at.gamelukas.citybuild.commands.SilentJoin;
 import at.gamelukas.citybuild.commands.Spawn;
+import at.gamelukas.citybuild.commands.Spy;
 import at.gamelukas.citybuild.commands.Warp;
 import at.gamelukas.citybuild.commands.Warps;
 import at.gamelukas.citybuild.commands.Wartung;
 import at.gamelukas.citybuild.commands.addAkte;
 import at.gamelukas.citybuild.commands.readAkte;
+import at.gamelukas.citybuild.listener.ChatListener;
 import at.gamelukas.citybuild.listener.DeathListener;
 import at.gamelukas.citybuild.listener.JoinListener;
 
@@ -34,15 +38,18 @@ public class Main extends JavaPlugin {
 	int message = 1;
 	
 	static Map<String, Long> signCooldown = new HashMap<String, Long>();
-
-
-	public static Map<String, Long> getSignCooldown() {
-		return signCooldown;
+	
+	static ArrayList<Player> spyPlayers = new ArrayList<Player>(); 
+	
+	public static ArrayList<Player> getSpyPlayers() {
+		return spyPlayers;
 	}
 
-	public static void setSignCooldown(Map<String, Long> signCooldown) {
-		Main.signCooldown = signCooldown;
+	public static void setSpyPlayers(ArrayList<Player> spyPlayers) {
+		Main.spyPlayers = spyPlayers;
 	}
+
+
 
 	@Override
 	public void onEnable() {
@@ -70,6 +77,7 @@ public class Main extends JavaPlugin {
 		this.getCommand("sign").setExecutor(new Sign());
 		this.getCommand("warps").setExecutor(new Warps());
 		this.getCommand("wartung").setExecutor(new Wartung());
+		this.getCommand("spy").setExecutor(new Spy());
 		
 		Bukkit.getConsoleSender().sendMessage("§3GameLukasCB §9| §aEnabled");
 		if (config.getDouble("CB.Spawn.X") == 0) {
@@ -80,6 +88,7 @@ public class Main extends JavaPlugin {
 		
 		Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
 		Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
+		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
 		
 
 		
@@ -174,6 +183,14 @@ public class Main extends JavaPlugin {
 
 	public static void setWartungen(boolean wartungen) {
 		Main.wartungen = wartungen;
+	}
+	
+	public static Map<String, Long> getSignCooldown() {
+		return signCooldown;
+	}
+
+	public static void setSignCooldown(Map<String, Long> signCooldown) {
+		Main.signCooldown = signCooldown;
 	}
 
 	

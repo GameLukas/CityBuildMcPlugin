@@ -20,10 +20,6 @@ public class DeathListener implements Listener {
 			} else {
 				e.setDeathMessage(config.getString("prefix") + "§7Der Spieler §a" + e.getEntity().getName() + "§7 ist gestorben");
 			}
-		}
-		
-
-		
+		}	
 	}
-
 }
