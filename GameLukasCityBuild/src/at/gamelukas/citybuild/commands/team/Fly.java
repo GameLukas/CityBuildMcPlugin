@@ -15,12 +15,17 @@ public class Fly implements CommandExecutor {
         Player p = (Player) commandSender;
         FileConfiguration config = Main.getPlugin().getConfig();
         if (p.hasPermission("CB.fly")) {
-            if (Main.getPlayerFlying().get(p.getName()) != null || Main.getPlayerFlying().get(p.getName()) == true) {
-                p.setFlying(false);
-                p.sendMessage(config.getString("prefix") + "§aFlugmodus AUS");
-            } else {
-                p.setFlying(true);
+            if (!Main.getPlayerFlying().containsKey(p.getName())) {
+                Main.getPlayerFlying().put(p.getName(), false);
+            }
+            if (Main.getPlayerFlying().get(p.getName()) == false) {
+                Main.getPlayerFlying().replace(p.getName(), true);
+                p.setAllowFlight(true);
                 p.sendMessage(config.getString("prefix") + "§aFlugmodus AN");
+            } else {
+                Main.getPlayerFlying().replace(p.getName(), false);
+                p.setAllowFlight(false);
+                p.sendMessage(config.getString("prefix") + "§aFlugmodus AUS");
             }
         } else {
             p.sendMessage(config.getString("prefix") + "§cDazu hast du keine Rechte!");
