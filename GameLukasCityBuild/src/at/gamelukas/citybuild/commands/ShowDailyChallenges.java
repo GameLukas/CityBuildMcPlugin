@@ -16,11 +16,15 @@ public class ShowDailyChallenges implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String arg2, String[] args) {
-		
+
 		Player p = (Player) sender;
-		Inventory gui = Bukkit.createInventory(null, 9, "Tägliche Aufgaben");
-		gui.setItem(4, createItem(Material.BED, "§3Crafte ein Bett"));
-		p.openInventory(gui);
+		//Noch nicht offen
+		if (p.isOp()) {
+			Inventory gui = Bukkit.createInventory(null, 9, "Tägliche Aufgaben");
+			gui.setItem(4, createItem(Material.BED, "§3Crafte ein Bett"));
+			p.openInventory(gui);
+		}
+
 		
 		ItemStack[] quests = {createItem(Material.BED, "§3Crafte ein Bett")};
 		

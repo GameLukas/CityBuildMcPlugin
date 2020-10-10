@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import at.gamelukas.citybuild.commands.team.Fly;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -32,7 +33,9 @@ import at.gamelukas.citybuild.listener.JoinListener;
 
 
 public class Main extends JavaPlugin {
-	
+	/*
+	CB.fly
+	 */
 	
 	public static Main plugin;
 	
@@ -56,7 +59,16 @@ public class Main extends JavaPlugin {
 	}
 
 	static Map<String, Long> signCooldown = new HashMap<String, Long>();
-	
+
+	public static Map<String, Boolean> getPlayerFlying() {
+		return playerFlying;
+	}
+
+	public static void setPlayerFlying(Map<String, Boolean> playerFlying) {
+		Main.playerFlying = playerFlying;
+	}
+
+	static Map<String, Boolean> playerFlying = new HashMap<String, Boolean>();
 	static ArrayList<Player> spyPlayers = new ArrayList<Player>(); 
 	
 	public static ArrayList<Player> getSpyPlayers() {
@@ -72,7 +84,6 @@ public class Main extends JavaPlugin {
 		
 		plugin = this;
 		FileConfiguration config = this.getConfig();
-		
 		if (config.getString("prefix") == null) {
 			config.set("prefix", "§aCityBuild | ");
 		}
@@ -93,6 +104,7 @@ public class Main extends JavaPlugin {
 		this.getCommand("wartung").setExecutor(new Wartung());
 		this.getCommand("spy").setExecutor(new Spy());
 		this.getCommand("daily").setExecutor(new ShowDailyChallenges());
+		this.getCommand("fly").setExecutor(new Fly());
 		
 		Bukkit.getConsoleSender().sendMessage("§3GameLukasCB §9| §aEnabled");
 		if (config.getDouble("CB.Spawn.X") == 0) {
