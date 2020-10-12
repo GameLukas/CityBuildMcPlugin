@@ -1,6 +1,7 @@
 package at.gamelukas.citybuild.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -44,17 +45,17 @@ public class Warp implements CommandExecutor {
 					p.teleport(loc);
 					
 				} else {
-					p.sendMessage(config.getString("prefix") + "§cDieser Warppunkt existiert nicht!");
+					p.sendMessage(Main.getPrefix() + "§cDieser Warppunkt existiert nicht!");
 				}
 				
 			
 				
 				
 			} else {
-				p.sendMessage(config.getString("prefix") + "§cDir fehlen die benötigten Rechte für diesen Warppunkt!");
+				p.sendMessage(Main.getPrefix() + "§cDir fehlen die benötigten Rechte für diesen Warppunkt!");
 			}
 		} else {
-			p.sendMessage(config.getString("prefix") + "§cBenutze /warp [Warpname]");
+			p.sendMessage(Main.getPrefix() + "§cBenutze /warp [Warpname]");
 		}
 		
 		

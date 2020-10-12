@@ -3,6 +3,7 @@ package at.gamelukas.citybuild.commands;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -36,7 +37,7 @@ public class Sign implements CommandExecutor {
 						long timeLeft = ((Main.getSignCooldown().get(p.getName()) - System.currentTimeMillis()) / 1000);
 						
 						
-						p.sendMessage(config.getString("prefix") + "§cDu musst noch " + (timeLeft / 3600) + " Stunden und " + (timeLeft / 60 - ((timeLeft / 3600) * 60)) + " Minuten warten.");
+						p.sendMessage(Main.getPrefix() + "§cDu musst noch " + (timeLeft / 3600) + " Stunden und " + (timeLeft / 60 - ((timeLeft / 3600) * 60)) + " Minuten warten.");
 						
 					
 						return false;
@@ -68,10 +69,10 @@ public class Sign implements CommandExecutor {
 						item.setItemMeta(meta);
 						//Cooldown
 						Main.getSignCooldown().put(p.getName(), System.currentTimeMillis() + (12 * 60 * 60 * 1000));
-						p.sendMessage(config.getString("prefix") + "§aDas Item in deiner Hand wurde erfolgreich signiert.");
+						p.sendMessage(Main.getPrefix() + "§aDas Item in deiner Hand wurde erfolgreich signiert.");
 							
 					} else {
-						p.sendMessage(config.getString("prefix") + "§cDu darfst das Item in deiner Hand nicht signieren.");
+						p.sendMessage(Main.getPrefix() + "§cDu darfst das Item in deiner Hand nicht signieren.");
 					}
 
 
@@ -82,7 +83,7 @@ public class Sign implements CommandExecutor {
 			
 			
 		} else {
-			p.sendMessage(config.getString("prefix") + "§cDazu hast du keine Rechte!");
+			p.sendMessage(Main.getPrefix() + "§cDazu hast du keine Rechte!");
 		}
 		
 		

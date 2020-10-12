@@ -1,5 +1,6 @@
 package at.gamelukas.citybuild.commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,11 +29,11 @@ public class SetSpawn implements CommandExecutor {
 			
 			Main.getPlugin().saveConfig();
 			
-			p.sendMessage(config.getString("prefix") + "§aSpawn gesetzt");
+			p.sendMessage(Main.getPrefix() + "ï¿½aSpawn gesetzt");
 			
 		} else {
 			
-			p.sendMessage(config.getString("prefix") + "§cDir fehlen die benötigten Rechte!");
+			p.sendMessage(Main.getPrefix() + "ï¿½cDir fehlen die benï¿½tigten Rechte!");
 		}
 		
 		return false;

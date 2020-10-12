@@ -1,6 +1,7 @@
 package at.gamelukas.citybuild.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -32,7 +33,7 @@ public class Spawn implements CommandExecutor {
 		Location loc = new Location(world, x, y, z, yaw, pitch);
 		
 		p.teleport(loc);
-		p.sendMessage(config.getString("prefix") + "§aDu wurdest zum Spawn teleportiert!");
+		p.sendMessage(Main.getPrefix() + "§aDu wurdest zum Spawn teleportiert!");
 		
 		return false;
 	}

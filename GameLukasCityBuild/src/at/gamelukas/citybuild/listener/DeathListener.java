@@ -1,5 +1,6 @@
 package at.gamelukas.citybuild.listener;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,9 +17,9 @@ public class DeathListener implements Listener {
 		
 		if (e.getEntity() instanceof Player) {
 			if (e.getEntity().getKiller() != null) {
-				e.setDeathMessage(config.getString("prefix") + "§7Der Spieler §a" + e.getEntity().getName() + "§7 wurde von §c" + e.getEntity().getKiller().getName() + " §7getötet.");
+				e.setDeathMessage(Main.getPrefix() + "§7Der Spieler §a" + e.getEntity().getName() + "§7 wurde von §c" + e.getEntity().getKiller().getName() + " §7getötet.");
 			} else {
-				e.setDeathMessage(config.getString("prefix") + "§7Der Spieler §a" + e.getEntity().getName() + "§7 ist gestorben");
+				e.setDeathMessage(Main.getPrefix() + "§7Der Spieler §a" + e.getEntity().getName() + "§7 ist gestorben");
 			}
 		}	
 	}

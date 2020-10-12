@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CityBuild">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="CityBuild.jar">
+      <element id="module-output" name="CityBuild" />
+    </root>
+  </artifact>
+</component>

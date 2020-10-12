@@ -7,9 +7,15 @@ import java.util.Map;
 import java.util.Random;
 
 import at.gamelukas.citybuild.commands.team.Fly;
+import at.gamelukas.citybuild.commands.team.GameMasterMode;
+import at.gamelukas.citybuild.commands.team.GameMasterModeTP;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import at.gamelukas.citybuild.commands.SetSpawn;
@@ -35,6 +41,8 @@ import at.gamelukas.citybuild.listener.JoinListener;
 public class Main extends JavaPlugin {
 	/*
 	CB.fly
+	CB.gmm
+
 	 */
 	
 	public static Main plugin;
@@ -44,11 +52,21 @@ public class Main extends JavaPlugin {
 	int challenges = 3;
 	
 	FileConfiguration config = getConfig();
-	
-	
+
 	int message = 1;
 	static int dailyChallenges[] = new int[3];
 	int lastDailyChallengeUpdate = config.getInt("dailyChallenge.lastUpdate");
+
+	static String prefix = "Â§aGameLukasCB | ";
+	public static String getPrefix() {
+		return prefix;
+	}
+
+	public void setPrefix(String prefix) {
+		this.prefix = prefix;
+	}
+
+
 	
 	public static int[] getDailyChallenges() {
 		return dailyChallenges;
@@ -69,6 +87,28 @@ public class Main extends JavaPlugin {
 	}
 
 	static Map<String, Boolean> playerFlying = new HashMap<String, Boolean>();
+
+	public static Map<String, Boolean> getGmmPlayer() {
+		return gmmPlayer;
+	}
+
+	public static void setGmmPlayer(Map<String, Boolean> gmmPlayer) {
+		Main.gmmPlayer = gmmPlayer;
+	}
+
+	static Map<String, Boolean> gmmPlayer = new HashMap<String, Boolean>();
+
+	public static Map<String, ItemStack[]> getGmmInvs() {
+		return gmmInvs;
+	}
+
+	static Map<String, ItemStack[]> gmmInvs = new HashMap<String, ItemStack[]>();
+
+	public static Map<String, Location> getGmmLocations() {
+		return gmmLocations;
+	}
+
+	static Map<String, Location> gmmLocations = new HashMap<String, Location>();
 	static ArrayList<Player> spyPlayers = new ArrayList<Player>(); 
 	
 	public static ArrayList<Player> getSpyPlayers() {
@@ -85,12 +125,12 @@ public class Main extends JavaPlugin {
 		plugin = this;
 		FileConfiguration config = this.getConfig();
 		if (config.getString("prefix") == null) {
-			config.set("prefix", "§aCityBuild | ");
+			config.set("prefix", "&aCityBuild | ");
 		}
-		
+
 		//save
 		saveConfig();
-		
+
 
 		this.getCommand("spawn").setExecutor(new Spawn());
 		this.getCommand("setspawn").setExecutor(new SetSpawn());
@@ -105,97 +145,94 @@ public class Main extends JavaPlugin {
 		this.getCommand("spy").setExecutor(new Spy());
 		this.getCommand("daily").setExecutor(new ShowDailyChallenges());
 		this.getCommand("fly").setExecutor(new Fly());
-		
-		Bukkit.getConsoleSender().sendMessage("§3GameLukasCB §9| §aEnabled");
+		this.getCommand("gmm").setExecutor(new GameMasterMode());
+		this.getCommand("gmmtp").setExecutor(new GameMasterModeTP());
+
+		Bukkit.getConsoleSender().sendMessage("Â§3GameLukasCB Â§9| Â§aEnabled");
 		if (config.getDouble("CB.Spawn.X") == 0) {
-			Bukkit.getConsoleSender().sendMessage("§3GameLukasCB §9|§c Spawn unset");
+			Bukkit.getConsoleSender().sendMessage("Â§3GameLukasCB Â§9|Â§c Spawn unset");
 		}
-		
-		
-		
+
+
+
 		Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
 		Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
 		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
 		Bukkit.getPluginManager().registerEvents(new Inventory(), this);
 		Bukkit.getPluginManager().registerEvents(new CraftEvent(), this);
-		
 
-		
+
+
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 
-			
-			
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				
 				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tab reload");
 				System.out.println("Tab Reloaded");
-				
-				
 			}
-			
+
 		}, 40, 800);
-		
-		
+
+
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 
-			
-			
+
+
 			@Override
 			public void run() {
-				
+
 				if (message == 1) {
-					//Bukkit.broadcastMessage(config.getString("prefix") + "§7§l§m----------------------------------");
-					Bukkit.broadcastMessage(config.getString("prefix") + "§bMit /shop kannst du den Shop öffnen!");
-					
+					//Bukkit.broadcastMessage(Main.getPrefix() + "Â§7Â§lÂ§m----------------------------------");
+					Bukkit.broadcastMessage(Main.getPrefix() + "Â§bMit /shop kannst du den Shop Â§ffnen!");
+
 					message++;
 				} else if (message == 2) {
-					
-					
-					Bukkit.broadcastMessage(config.getString("prefix") + "§bAchtung! In unserer Farmwelt ist PVP aktiv!");
-					
+
+
+					Bukkit.broadcastMessage(Main.getPrefix() + "Â§bAchtung! In unserer Farmwelt ist PVP aktiv!");
+
 					message++;
 
 				} else if (message == 3) {
-					
-					Bukkit.broadcastMessage(config.getString("prefix") + "§bWenn du bugs findest melde diese bitte im Teamspeak.");
-					
+
+					Bukkit.broadcastMessage(Main.getPrefix() + "Â§bWenn du bugs findest melde diese bitte im Teamspeak.");
+
 					message++;
 				} else if (message == 4) {
-					
-					Bukkit.broadcastMessage(config.getString("prefix") + "§bMit /warp Farmwelt kommst du in die Farmwelt");
-					
+
+					Bukkit.broadcastMessage(Main.getPrefix() + "Â§bMit /warp Farmwelt kommst du in die Farmwelt");
+
 					message++;
 				} else if (message == 5 ) {
-					
-					Bukkit.broadcastMessage(config.getString("prefix") + "§cUPDATE: §bDu kannst jetzt Clans erstellen. Gebe einfach mal /clan ein.");
-					
+
+					Bukkit.broadcastMessage(Main.getPrefix() + "Â§cUPDATE: Â§bDu kannst jetzt Clans erstellen. Gebe einfach mal /clan ein.");
+
 					message = 1;
 				}
-				
-				
-				
+
+
+
 			}
-			
+
 		}, 10000, 36000);
-		
+
 		//Daily Challenge
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 
 			LocalDate date = LocalDate.now();
 			@Override
 			public void run() {
-				
+
 				if (Main.getPlugin().getConfig().getInt("dailyChallenge.lastUpdate") != date.getDayOfYear()) {
 					Main.getPlugin().getConfig().set("dailyChallenge.lastUpdate", date.getDayOfYear());
 					Main.getPlugin().saveConfig();
 					Random rdm = new Random();
-					
+
 					int lastRdmNumber = 111111;
 					int lastlastRdmNumber = 111112;
 					int[] challengeArray = Main.getDailyChallenges();
-					
+
 					for (int i = 0; i < 3; i++) {
 						boolean same = true;
 						while (same) {
@@ -212,27 +249,65 @@ public class Main extends JavaPlugin {
 						}
 					}
 				}
-				
+
 			}
-			
+
 		}, 100, 100);
-		
-		
+
+		//Daily Challenge
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 
-			
-			
+			LocalDate date = LocalDate.now();
 			@Override
 			public void run() {
-				
-			
+
+				for (Player all : Bukkit.getOnlinePlayers()) {
+					if (Main.getGmmPlayer().containsKey(all.getName())) {
+						if (Main.getGmmPlayer().get(all.getName())) {
+							all.sendMessage(Main.getPrefix() + "Â§cDu bist noch im GameMasterMode");
+						}
+					}
+				}
+
+			}
+
+		}, 1000, 1000);
+
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+
+			@Override
+			public void run() {
+
+				for (Player all : Bukkit.getOnlinePlayers()) {
+
+					for (Player all2 : Bukkit.getOnlinePlayers()) {
+
+						if (getGmmPlayer().containsKey(all2.getName())) {
+							if (getGmmPlayer().get(all2.getName())) {
+								all.hidePlayer(all2);
+							} else {
+								all.showPlayer(all2);
+							}
+						}
+					}
+
+				}
+			}
+
+		}, 2, 2);
+
+
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+
+			@Override
+			public void run() {
+
+
 				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "eco give * 20");
-				Bukkit.broadcastMessage(config.getString("prefix") + "§7§l§m-------------------------------------------");
-				Bukkit.broadcastMessage(config.getString("prefix") + "§bDu hast deinen stündlichen Aktivitätsbonus erhalten!");
-				Bukkit.broadcastMessage(config.getString("prefix") + "§7§l§m-------------------------------------------");
-				
-				
-				
+				Bukkit.broadcastMessage(Main.getPrefix() + "Â§7Â§lÂ§m-------------------------------------------");
+				Bukkit.broadcastMessage(Main.getPrefix() + "Â§bDu hast deinen stÂ§ndlichen AktivitÂ§tsbonus erhalten!");
+				Bukkit.broadcastMessage(Main.getPrefix() + "Â§7Â§lÂ§m-------------------------------------------");
+
 			}
 			
 		}, 72000, 72000);

@@ -2,6 +2,7 @@ package at.gamelukas.citybuild.commands.team;
 
 
 import at.gamelukas.citybuild.main.Main;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,14 +22,14 @@ public class Fly implements CommandExecutor {
             if (Main.getPlayerFlying().get(p.getName()) == false) {
                 Main.getPlayerFlying().replace(p.getName(), true);
                 p.setAllowFlight(true);
-                p.sendMessage(config.getString("prefix") + "§aFlugmodus AN");
+                p.sendMessage(Main.getPrefix() + "§aFlugmodus AN");
             } else {
                 Main.getPlayerFlying().replace(p.getName(), false);
                 p.setAllowFlight(false);
-                p.sendMessage(config.getString("prefix") + "§aFlugmodus AUS");
+                p.sendMessage(Main.getPrefix() + "§aFlugmodus AUS");
             }
         } else {
-            p.sendMessage(config.getString("prefix") + "§cDazu hast du keine Rechte!");
+            p.sendMessage(Main.getPrefix() + "§cDazu hast du keine Rechte!");
         }
         return false;
     }

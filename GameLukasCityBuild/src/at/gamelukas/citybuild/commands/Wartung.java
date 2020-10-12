@@ -1,6 +1,7 @@
 package at.gamelukas.citybuild.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,7 +24,7 @@ public class Wartung implements CommandExecutor {
 				if (args[0].equalsIgnoreCase("true")) {
 					
 					Main.setWartungen(true);
-					p.sendMessage(config.getString("prefix") + "§aWartung: AN");
+					p.sendMessage(Main.getPrefix() + "§aWartung: AN");
 					
 					for (Player i : Bukkit.getOnlinePlayers()) {
 						
@@ -37,17 +38,17 @@ public class Wartung implements CommandExecutor {
 					
 					Main.setWartungen(false);
 					
-					p.sendMessage(config.getString("prefix") + "§aWartung: AUS");
+					p.sendMessage(Main.getPrefix() + "§aWartung: AUS");
 					
 				} else {
-					p.sendMessage(config.getString("prefix") + "§c/wartung [true/false]");
+					p.sendMessage(Main.getPrefix() + "§c/wartung [true/false]");
 				}
 				
 			} else {
-				p.sendMessage(config.getString("prefix") + "§c/wartung [true/false]");
+				p.sendMessage(Main.getPrefix() + "§c/wartung [true/false]");
 			}
 		} else {
-			p.sendMessage(config.getString("prefix") + "§cDir fehlen die benötigten Rechte!");
+			p.sendMessage(Main.getPrefix() + "§cDir fehlen die benötigten Rechte!");
 		}
 		
 		return false;

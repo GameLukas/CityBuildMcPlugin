@@ -1,5 +1,6 @@
 package at.gamelukas.citybuild.commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,11 +22,11 @@ public class SilentJoin implements CommandExecutor {
 		if (p.hasPermission("CB.silentjoin")) {
 			if (config.getBoolean("Player." + p.getUniqueId() + ".silentjoin")) {
 				config.set("Player." + p.getUniqueId() + ".silentjoin", false);
-				p.sendMessage(config.getString("prefix") + "silentjoin: §cfalse");
+				p.sendMessage(Main.getPrefix() + "silentjoin: §cfalse");
 				Main.getPlugin().saveConfig();
 			} else {
 				config.set("Player." + p.getUniqueId() + ".silentjoin", true);
-				p.sendMessage(config.getString("prefix") + "silentjoin: §atrue");
+				p.sendMessage(Main.getPrefix() + "silentjoin: §atrue");
 				Main.getPlugin().saveConfig();
 			}
 		}

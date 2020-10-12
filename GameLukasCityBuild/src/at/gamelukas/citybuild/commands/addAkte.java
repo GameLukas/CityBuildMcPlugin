@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -81,7 +82,7 @@ public class addAkte implements CommandExecutor {
 						config.set("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".ReportedLocation.Z", (int)(Bukkit.getPlayer(player).getLocation().getZ()));
 						config.set("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".ReportedLocation.World", Bukkit.getPlayer(player).getLocation().getWorld().getName());
 						Main.getPlugin().saveConfig();
-						p.sendMessage(config.getString("prefix") + "§aEintrag gespeichert! (" + i + ")");
+						p.sendMessage(Main.getPrefix() + "ï¿½aEintrag gespeichert! (" + i + ")");
 						break;
 					} else {
 						continue;
@@ -89,16 +90,16 @@ public class addAkte implements CommandExecutor {
 					
 				}
 			} else {
-				p.sendMessage(config.getString("prefix") + "§cDieser Spieler ist nicht online!");
+				p.sendMessage(Main.getPrefix() + "ï¿½cDieser Spieler ist nicht online!");
 			}
 			
 
 		} else {
-			p.sendMessage(config.getString("prefix") + "§c/addakte [Name] [Grund]");
+			p.sendMessage(Main.getPrefix() + "ï¿½c/addakte [Name] [Grund]");
 		}
 		
 		} else {
-			p.sendMessage(config.getString("prefix") + "§cDir fehlen die benötigten Rechte");
+			p.sendMessage(Main.getPrefix() + "ï¿½cDir fehlen die benï¿½tigten Rechte");
 		}
 
 		

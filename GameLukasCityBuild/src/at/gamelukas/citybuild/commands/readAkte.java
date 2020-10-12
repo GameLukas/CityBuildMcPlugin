@@ -1,6 +1,7 @@
 package at.gamelukas.citybuild.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,13 +39,13 @@ public class readAkte implements CommandExecutor {
 				if (isPlayerOnline) {
 					
 					//Messages
-					p.sendMessage(config.getString("prefix") + "     §8--- §aAkte §8---");
+					p.sendMessage(Main.getPrefix() + "     ï¿½8--- ï¿½aAkte ï¿½8---");
 					
 					for (int i = 0; i < 10000; i++) {
 						
 						
 						if (config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".Reason") != null) {
-							p.sendMessage("§eID: §7 "+ i + " §8- §eReason: §7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".Reason") + "§e §8- §eDate: §7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".shortDate") + " §8- §eMelder: §7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".Reporter"));
+							p.sendMessage("ï¿½eID: ï¿½7 "+ i + " ï¿½8- ï¿½eReason: ï¿½7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".Reason") + "ï¿½e ï¿½8- ï¿½eDate: ï¿½7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".shortDate") + " ï¿½8- ï¿½eMelder: ï¿½7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".Reporter"));
 						} else {
 							break;
 						}
@@ -52,7 +53,7 @@ public class readAkte implements CommandExecutor {
 					}
 					
 				} else {
-					p.sendMessage(config.getString("prefix") + "§cDieser Spieler ist nicht online!");
+					p.sendMessage(Main.getPrefix() + "ï¿½cDieser Spieler ist nicht online!");
 				}
 				
 				
@@ -76,27 +77,27 @@ public class readAkte implements CommandExecutor {
 				if (isPlayerOnline) {
 					if (config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".Reason") != null) {
 						//ID infos
-						p.sendMessage(config.getString("prefix") + "     §8--- §aAkte §8---");
-						p.sendMessage("§eSpieler Online: §7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".OnlineAmount"));
-						p.sendMessage("§eSpieler liste: §7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".OnlineList"));
-						p.sendMessage("§eReported-Player Location: §7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".ReportedLocation.X") + "/" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".ReportedLocation.Y") + "/" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".ReportedLocation.Z") + "/" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".ReportedLocation.World"));
-						p.sendMessage("§eTime: §7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".Date"));
+						p.sendMessage(Main.getPrefix() + "     ï¿½8--- ï¿½aAkte ï¿½8---");
+						p.sendMessage("ï¿½eSpieler Online: ï¿½7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".OnlineAmount"));
+						p.sendMessage("ï¿½eSpieler liste: ï¿½7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".OnlineList"));
+						p.sendMessage("ï¿½eReported-Player Location: ï¿½7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".ReportedLocation.X") + "/" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".ReportedLocation.Y") + "/" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".ReportedLocation.Z") + "/" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".ReportedLocation.World"));
+						p.sendMessage("ï¿½eTime: ï¿½7" + config.getString("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + args[1] + ".Date"));
 					} else {
-						p.sendMessage(config.getString("prefix") + "§cDiese ID existiert nicht!");
+						p.sendMessage(Main.getPrefix() + "ï¿½cDiese ID existiert nicht!");
 					}
 				} else {
-					p.sendMessage(config.getString("prefix") + "§cDieser Spieler ist nicht online!");
+					p.sendMessage(Main.getPrefix() + "ï¿½cDieser Spieler ist nicht online!");
 				}
 				
 
 				
 			} else {
-				p.sendMessage(config.getString("prefix") + "§c/readakte [Name]");
+				p.sendMessage(Main.getPrefix() + "ï¿½c/readakte [Name]");
 			}
 			
 
 		} else {
-			p.sendMessage(config.getString("prefix") + "§cDir fehlen die benötigten Rechte");
+			p.sendMessage(Main.getPrefix() + "ï¿½cDir fehlen die benï¿½tigten Rechte");
 		}
 		
 		return false;

@@ -1,5 +1,6 @@
 package at.gamelukas.citybuild.commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,18 +24,18 @@ public class Spy implements CommandExecutor {
 					for (int i = 0; i < Main.getSpyPlayers().size(); i++) {
 						if (Main.getSpyPlayers().get(i).equals(p)) {
 							Main.getSpyPlayers().remove(i);
-							p.sendMessage(config.getString("prefix") + "§7Spymodus deaktiviert");
+							p.sendMessage(Main.getPrefix() + "§7Spymodus deaktiviert");
 						}
 					}
 				} else {
 					Main.getSpyPlayers().add(p);
-					p.sendMessage(config.getString("prefix") + "§7Spymodus aktiviert");
+					p.sendMessage(Main.getPrefix() + "§7Spymodus aktiviert");
 				}
 			} else {
-				p.sendMessage(config.getString("prefix") + "§c/spy");	
+				p.sendMessage(Main.getPrefix() + "§c/spy");
 			}
 		} else {
-			p.sendMessage(config.getString("prefix") + "§ckeine Rechte!");
+			p.sendMessage(Main.getPrefix() + "§ckeine Rechte!");
 		}
 		
 

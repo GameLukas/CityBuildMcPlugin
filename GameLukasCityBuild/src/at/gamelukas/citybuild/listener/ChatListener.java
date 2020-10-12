@@ -1,6 +1,7 @@
 package at.gamelukas.citybuild.listener;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,7 +22,7 @@ public class ChatListener implements Listener {
 			if (Main.getSpyPlayers().contains(all)) {
 				
 				if (!e.getPlayer().getName().equals(all.getName())) {
-					all.sendMessage(config.getString("prefix") + "§7[§eSpy§7] §a" + e.getPlayer().getName() + "§7 | " + e.getMessage());
+					all.sendMessage(Main.getPrefix() + "§7[§eSpy§7] §a" + e.getPlayer().getName() + "§7 | " + e.getMessage());
 				}
 			}
 		}

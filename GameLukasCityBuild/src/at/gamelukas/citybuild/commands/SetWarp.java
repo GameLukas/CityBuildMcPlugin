@@ -1,6 +1,7 @@
 package at.gamelukas.citybuild.commands;
 
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,16 +32,16 @@ public class SetWarp implements CommandExecutor {
 				
 				Main.getPlugin().saveConfig();
 				
-				p.sendMessage(config.getString("prefix") + "§aWarp gesetzt");
+				p.sendMessage(Main.getPrefix() + "ï¿½aWarp gesetzt");
 				
 				
 				
 				
 			} else {
-				p.sendMessage(config.getString("prefix") + "§cBitte verwende /setwarp [warpname]");
+				p.sendMessage(Main.getPrefix() + "ï¿½cBitte verwende /setwarp [warpname]");
 			}
 		} else {
-			p.sendMessage(config.getString("prefix") + "§cDir fehlen die benötigten Rechte!");
+			p.sendMessage(Main.getPrefix() + "ï¿½cDir fehlen die benï¿½tigten Rechte!");
 		}
 		
 		
