@@ -24,12 +24,12 @@ public class Wartung implements CommandExecutor {
 				if (args[0].equalsIgnoreCase("true")) {
 					
 					Main.setWartungen(true);
-					p.sendMessage(Main.getPrefix() + "§aWartung: AN");
+					p.sendMessage(Main.getPrefix() + "Â§aWartung: AN");
 					
 					for (Player i : Bukkit.getOnlinePlayers()) {
 						
 						if (!i.hasPermission("CB.wartungen.join")) {
-							i.kickPlayer("§cWartungsarbeiten");
+							i.kickPlayer("Â§cWartungsarbeiten");
 						}
 						
 					}
@@ -38,17 +38,17 @@ public class Wartung implements CommandExecutor {
 					
 					Main.setWartungen(false);
 					
-					p.sendMessage(Main.getPrefix() + "§aWartung: AUS");
+					p.sendMessage(Main.getPrefix() + "Â§aWartung: AUS");
 					
 				} else {
-					p.sendMessage(Main.getPrefix() + "§c/wartung [true/false]");
+					p.sendMessage(Main.getPrefix() + "Â§c/wartung [true/false]");
 				}
 				
 			} else {
-				p.sendMessage(Main.getPrefix() + "§c/wartung [true/false]");
+				p.sendMessage(Main.getPrefix() + "Â§c/wartung [true/false]");
 			}
 		} else {
-			p.sendMessage(Main.getPrefix() + "§cDir fehlen die benötigten Rechte!");
+			p.sendMessage(Main.getPrefix() + "Â§cDir fehlen die benÃ¶tigten Rechte!");
 		}
 		
 		return false;

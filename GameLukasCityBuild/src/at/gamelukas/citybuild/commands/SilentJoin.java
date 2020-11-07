@@ -22,11 +22,11 @@ public class SilentJoin implements CommandExecutor {
 		if (p.hasPermission("CB.silentjoin")) {
 			if (config.getBoolean("Player." + p.getUniqueId() + ".silentjoin")) {
 				config.set("Player." + p.getUniqueId() + ".silentjoin", false);
-				p.sendMessage(Main.getPrefix() + "silentjoin: §cfalse");
+				p.sendMessage(Main.getPrefix() + "silentjoin: Â§cfalse");
 				Main.getPlugin().saveConfig();
 			} else {
 				config.set("Player." + p.getUniqueId() + ".silentjoin", true);
-				p.sendMessage(Main.getPrefix() + "silentjoin: §atrue");
+				p.sendMessage(Main.getPrefix() + "silentjoin: Â§atrue");
 				Main.getPlugin().saveConfig();
 			}
 		}

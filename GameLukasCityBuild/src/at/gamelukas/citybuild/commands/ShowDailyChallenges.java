@@ -20,13 +20,13 @@ public class ShowDailyChallenges implements CommandExecutor {
 		Player p = (Player) sender;
 		//Noch nicht offen
 		if (p.isOp()) {
-			Inventory gui = Bukkit.createInventory(null, 9, "Tägliche Aufgaben");
-			gui.setItem(4, createItem(Material.BED, "§3Crafte ein Bett"));
+			Inventory gui = Bukkit.createInventory(null, 9, "TÃ¤gliche Aufgaben");
+			gui.setItem(4, createItem(Material.BED, "Â§3Crafte ein Bett"));
 			p.openInventory(gui);
 		}
 
 		
-		ItemStack[] quests = {createItem(Material.BED, "§3Crafte ein Bett")};
+		ItemStack[] quests = {createItem(Material.BED, "Â§3Crafte ein Bett")};
 		
 		return false;
 	}
@@ -38,7 +38,7 @@ public class ShowDailyChallenges implements CommandExecutor {
 		ItemMeta meta = item.getItemMeta();
 		meta.setDisplayName(itemName);
 		ArrayList<String> list = new ArrayList<String>();
-		list.add("§cNoch nicht abgeschlossen");
+		list.add("Â§cNoch nicht abgeschlossen");
 		meta.setLore(list);
 		item.setItemMeta(meta);
 		return item;

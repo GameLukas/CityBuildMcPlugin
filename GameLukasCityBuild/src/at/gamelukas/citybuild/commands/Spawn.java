@@ -33,7 +33,7 @@ public class Spawn implements CommandExecutor {
 		Location loc = new Location(world, x, y, z, yaw, pitch);
 		
 		p.teleport(loc);
-		p.sendMessage(Main.getPrefix() + "§aDu wurdest zum Spawn teleportiert!");
+		p.sendMessage(Main.getPrefix() + "Â§aDu wurdest zum Spawn teleportiert!");
 		
 		return false;
 	}

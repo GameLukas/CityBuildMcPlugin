@@ -17,9 +17,9 @@ public class DeathListener implements Listener {
 		
 		if (e.getEntity() instanceof Player) {
 			if (e.getEntity().getKiller() != null) {
-				e.setDeathMessage(Main.getPrefix() + "§7Der Spieler §a" + e.getEntity().getName() + "§7 wurde von §c" + e.getEntity().getKiller().getName() + " §7getötet.");
+				e.setDeathMessage(Main.getPrefix() + "Â§7Der Spieler Â§a" + e.getEntity().getName() + "Â§7 wurde von Â§c" + e.getEntity().getKiller().getName() + " Â§7getÂ§tet.");
 			} else {
-				e.setDeathMessage(Main.getPrefix() + "§7Der Spieler §a" + e.getEntity().getName() + "§7 ist gestorben");
+				e.setDeathMessage(Main.getPrefix() + "Â§7Der Spieler Â§a" + e.getEntity().getName() + "Â§7 ist gestorben");
 			}
 		}	
 	}

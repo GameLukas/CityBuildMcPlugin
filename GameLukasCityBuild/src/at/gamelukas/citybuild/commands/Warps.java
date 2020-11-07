@@ -19,7 +19,7 @@ public class Warps implements CommandExecutor {
 		FileConfiguration config = Main.getPlugin().getConfig();
 		Player p = (Player) sender;
 		
-		p.sendMessage(Main.getPrefix() + "§bBenutze /warp Farmwelt um in die Farmwelt zu gelangen!");
+		p.sendMessage(Main.getPrefix() + "Â§bBenutze /warp Farmwelt um in die Farmwelt zu gelangen!");
 		
 		
 	

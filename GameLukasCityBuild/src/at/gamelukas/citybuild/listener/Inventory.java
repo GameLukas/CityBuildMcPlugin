@@ -10,7 +10,7 @@ public class Inventory implements Listener {
 	@EventHandler
 	public void onClickInv (final InventoryClickEvent e) {
 		
-		if (e.getInventory().getTitle() != null && e.getInventory().getTitle().equals("Tägliche Aufgaben")) {
+		if (e.getInventory().getTitle() != null && e.getInventory().getTitle().equals("TÃ¤gliche Aufgaben")) {
 			e.setCancelled(true);
 		}
 	}

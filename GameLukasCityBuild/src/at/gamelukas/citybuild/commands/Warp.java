@@ -45,17 +45,17 @@ public class Warp implements CommandExecutor {
 					p.teleport(loc);
 					
 				} else {
-					p.sendMessage(Main.getPrefix() + "§cDieser Warppunkt existiert nicht!");
+					p.sendMessage(Main.getPrefix() + "Â§cDieser Warppunkt existiert nicht!");
 				}
 				
 			
 				
 				
 			} else {
-				p.sendMessage(Main.getPrefix() + "§cDir fehlen die benötigten Rechte für diesen Warppunkt!");
+				p.sendMessage(Main.getPrefix() + "Â§cDir fehlen die benÃ¶tigten Rechte fÃ¼r diesen Warppunkt!");
 			}
 		} else {
-			p.sendMessage(Main.getPrefix() + "§cBenutze /warp [Warpname]");
+			p.sendMessage(Main.getPrefix() + "Â§cBenutze /warp [Warpname]");
 		}
 		
 		

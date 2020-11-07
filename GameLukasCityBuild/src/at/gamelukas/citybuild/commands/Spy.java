@@ -24,18 +24,18 @@ public class Spy implements CommandExecutor {
 					for (int i = 0; i < Main.getSpyPlayers().size(); i++) {
 						if (Main.getSpyPlayers().get(i).equals(p)) {
 							Main.getSpyPlayers().remove(i);
-							p.sendMessage(Main.getPrefix() + "§7Spymodus deaktiviert");
+							p.sendMessage(Main.getPrefix() + "Â§7Spymodus deaktiviert");
 						}
 					}
 				} else {
 					Main.getSpyPlayers().add(p);
-					p.sendMessage(Main.getPrefix() + "§7Spymodus aktiviert");
+					p.sendMessage(Main.getPrefix() + "Â§7Spymodus aktiviert");
 				}
 			} else {
-				p.sendMessage(Main.getPrefix() + "§c/spy");
+				p.sendMessage(Main.getPrefix() + "Â§c/spy");
 			}
 		} else {
-			p.sendMessage(Main.getPrefix() + "§ckeine Rechte!");
+			p.sendMessage(Main.getPrefix() + "Â§ckeine Rechte!");
 		}
 		
 

@@ -37,7 +37,7 @@ public class Sign implements CommandExecutor {
 						long timeLeft = ((Main.getSignCooldown().get(p.getName()) - System.currentTimeMillis()) / 1000);
 						
 						
-						p.sendMessage(Main.getPrefix() + "§cDu musst noch " + (timeLeft / 3600) + " Stunden und " + (timeLeft / 60 - ((timeLeft / 3600) * 60)) + " Minuten warten.");
+						p.sendMessage(Main.getPrefix() + "Â§cDu musst noch " + (timeLeft / 3600) + " Stunden und " + (timeLeft / 60 - ((timeLeft / 3600) * 60)) + " Minuten warten.");
 						
 					
 						return false;
@@ -51,7 +51,7 @@ public class Sign implements CommandExecutor {
 					
 					ItemStack item = p.getItemInHand();
 					
-					String loreOwn = "§7";
+					String loreOwn = "Â§7";
 					
 					for (int i = 0; i < args.length; i++) {
 						loreOwn += (args[i] + " ");
@@ -62,17 +62,17 @@ public class Sign implements CommandExecutor {
 						
 						ItemMeta meta = item.getItemMeta();
 						ArrayList<String> lore = new ArrayList<String>();
-						lore.add("§7Signiert von §b" + p.getName());
-						lore.add("§7am §b" + date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear());
+						lore.add("Â§7Signiert von Â§b" + p.getName());
+						lore.add("Â§7am Â§b" + date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear());
 						lore.add(loreOwn);
 						meta.setLore(lore);
 						item.setItemMeta(meta);
 						//Cooldown
 						Main.getSignCooldown().put(p.getName(), System.currentTimeMillis() + (12 * 60 * 60 * 1000));
-						p.sendMessage(Main.getPrefix() + "§aDas Item in deiner Hand wurde erfolgreich signiert.");
+						p.sendMessage(Main.getPrefix() + "Â§aDas Item in deiner Hand wurde erfolgreich signiert.");
 							
 					} else {
-						p.sendMessage(Main.getPrefix() + "§cDu darfst das Item in deiner Hand nicht signieren.");
+						p.sendMessage(Main.getPrefix() + "Â§cDu darfst das Item in deiner Hand nicht signieren.");
 					}
 
 
@@ -83,7 +83,7 @@ public class Sign implements CommandExecutor {
 			
 			
 		} else {
-			p.sendMessage(Main.getPrefix() + "§cDazu hast du keine Rechte!");
+			p.sendMessage(Main.getPrefix() + "Â§cDazu hast du keine Rechte!");
 		}
 		
 		

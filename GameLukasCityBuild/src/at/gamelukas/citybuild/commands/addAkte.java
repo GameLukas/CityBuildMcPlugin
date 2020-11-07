@@ -82,7 +82,7 @@ public class addAkte implements CommandExecutor {
 						config.set("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".ReportedLocation.Z", (int)(Bukkit.getPlayer(player).getLocation().getZ()));
 						config.set("CB.Akte." + Bukkit.getPlayer(player).getUniqueId() + "." + i + ".ReportedLocation.World", Bukkit.getPlayer(player).getLocation().getWorld().getName());
 						Main.getPlugin().saveConfig();
-						p.sendMessage(Main.getPrefix() + "�aEintrag gespeichert! (" + i + ")");
+						p.sendMessage(Main.getPrefix() + "§aEintrag gespeichert! (" + i + ")");
 						break;
 					} else {
 						continue;
@@ -90,16 +90,16 @@ public class addAkte implements CommandExecutor {
 					
 				}
 			} else {
-				p.sendMessage(Main.getPrefix() + "�cDieser Spieler ist nicht online!");
+				p.sendMessage(Main.getPrefix() + "§cDieser Spieler ist nicht online!");
 			}
 			
 
 		} else {
-			p.sendMessage(Main.getPrefix() + "�c/addakte [Name] [Grund]");
+			p.sendMessage(Main.getPrefix() + "§c/addakte [Name] [Grund]");
 		}
 		
 		} else {
-			p.sendMessage(Main.getPrefix() + "�cDir fehlen die ben�tigten Rechte");
+			p.sendMessage(Main.getPrefix() + "§cDir fehlen die benötigten Rechte");
 		}
 
 		

@@ -22,7 +22,7 @@ public class ChatListener implements Listener {
 			if (Main.getSpyPlayers().contains(all)) {
 				
 				if (!e.getPlayer().getName().equals(all.getName())) {
-					all.sendMessage(Main.getPrefix() + "§7[§eSpy§7] §a" + e.getPlayer().getName() + "§7 | " + e.getMessage());
+					all.sendMessage(Main.getPrefix() + "Â§7[Â§eSpyÂ§7] Â§a" + e.getPlayer().getName() + "Â§7 | " + e.getMessage());
 				}
 			}
 		}

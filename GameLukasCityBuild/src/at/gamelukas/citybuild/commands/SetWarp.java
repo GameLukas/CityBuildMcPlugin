@@ -32,16 +32,16 @@ public class SetWarp implements CommandExecutor {
 				
 				Main.getPlugin().saveConfig();
 				
-				p.sendMessage(Main.getPrefix() + "�aWarp gesetzt");
+				p.sendMessage(Main.getPrefix() + "§aWarp gesetzt");
 				
 				
 				
 				
 			} else {
-				p.sendMessage(Main.getPrefix() + "�cBitte verwende /setwarp [warpname]");
+				p.sendMessage(Main.getPrefix() + "§cBitte verwende /setwarp [warpname]");
 			}
 		} else {
-			p.sendMessage(Main.getPrefix() + "�cDir fehlen die ben�tigten Rechte!");
+			p.sendMessage(Main.getPrefix() + "§cDir fehlen die benötigten Rechte!");
 		}
 		
 		

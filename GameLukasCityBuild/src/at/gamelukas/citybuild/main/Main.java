@@ -125,7 +125,7 @@ public class Main extends JavaPlugin {
 		plugin = this;
 		FileConfiguration config = this.getConfig();
 		if (config.getString("prefix") == null) {
-			config.set("prefix", "&aCityBuild | ");
+			config.set("prefix", "§aCityBuild | ");
 		}
 
 		//save
@@ -184,7 +184,7 @@ public class Main extends JavaPlugin {
 
 				if (message == 1) {
 					//Bukkit.broadcastMessage(Main.getPrefix() + "§7§l§m----------------------------------");
-					Bukkit.broadcastMessage(Main.getPrefix() + "§bMit /shop kannst du den Shop §ffnen!");
+					Bukkit.broadcastMessage(Main.getPrefix() + "§bMit /shop kannst du den Shop öffnen!");
 
 					message++;
 				} else if (message == 2) {

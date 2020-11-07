@@ -38,24 +38,24 @@ public class JoinListener implements Listener {
 
 		if (Main.getGmmPlayer().containsKey(p.getName())) {
 			if (Main.getGmmPlayer().get(p.getName())) {
-				p.sendMessage(Main.getPrefix() + "§c!!!!ACHTUNG!!!! Du bist noch im GameMasterMode");
-				p.sendMessage(Main.getPrefix() + "§cBitte verlasse bei jedem logout den GameMasterMode, ansonsten kann bei einem Server-Neustart dein Inventar gelöscht werden!");
+				p.sendMessage(Main.getPrefix() + "Â§c!!!!ACHTUNG!!!! Du bist noch im GameMasterMode");
+				p.sendMessage(Main.getPrefix() + "Â§cBitte verlasse bei jedem logout den GameMasterMode, ansonsten kann bei einem Server-Neustart dein Inventar gelÃ¶scht werden!");
 			}
 		}
 		
 		if (config.getBoolean("Player." + p.getUniqueId() + ".silentjoin")) {
-			p.sendMessage(Main.getPrefix() + "§aDeine JoinNachricht wurde nicht gesendet!");
+			p.sendMessage(Main.getPrefix() + "Â§aDeine JoinNachricht wurde nicht gesendet!");
 			e.setJoinMessage(null);
 		} else {
-			e.setJoinMessage(Main.getPrefix() + p.getName() + " §7hat den CB-Server betreten!");
+			e.setJoinMessage(Main.getPrefix() + p.getName() + " Â§7hat den CB-Server betreten!");
 		}
 		
 		if (Main.isWartungen()) {
 			
 				if (!p.hasPermission("CB.wartungen.join")) {
-					p.kickPlayer("§cWartungsarbeiten");
+					p.kickPlayer("Â§cWartungsarbeiten");
 				} else {
-					p.sendMessage("§cWARTUNGS-MODUS ist eingeschaltet.");
+					p.sendMessage("Â§cWARTUNGS-MODUS ist eingeschaltet.");
 				}
 
 			}
@@ -65,7 +65,7 @@ public class JoinListener implements Listener {
 	public void onPlayerLeft (final PlayerQuitEvent e) {
 		
 		Player p = (Player) e.getPlayer();
-		e.setQuitMessage(Main.getPrefix() + p.getName() + " §7hat den CB-Server verlassen!");
+		e.setQuitMessage(Main.getPrefix() + p.getName() + " Â§7hat den CB-Server verlassen!");
 		
 	}
 	
@@ -78,7 +78,7 @@ public class JoinListener implements Listener {
 		
 		if (cmd[0].startsWith("bukkit") || cmd[0].startsWith("pl") || cmd[0].startsWith("?") || cmd[0].startsWith("help") || cmd[0].startsWith("spigot") || cmd[0].startsWith("version") || cmd[0].startsWith("pex")  || cmd[0].startsWith("server")) {
 			if (!p.isOp() || !p.hasPermission("CB.cmd.use")) {
-				p.sendMessage(Main.getPrefix() + "§cDu darfst diesen Command nicht verwenden!");
+				p.sendMessage(Main.getPrefix() + "Â§cDu darfst diesen Command nicht verwenden!");
 				e.setCancelled(true);
 			}
 		}

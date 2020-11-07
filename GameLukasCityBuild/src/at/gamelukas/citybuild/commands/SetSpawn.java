@@ -29,11 +29,11 @@ public class SetSpawn implements CommandExecutor {
 			
 			Main.getPlugin().saveConfig();
 			
-			p.sendMessage(Main.getPrefix() + "�aSpawn gesetzt");
+			p.sendMessage(Main.getPrefix() + "§aSpawn gesetzt");
 			
 		} else {
 			
-			p.sendMessage(Main.getPrefix() + "�cDir fehlen die ben�tigten Rechte!");
+			p.sendMessage(Main.getPrefix() + "§cDir fehlen die benötigten Rechte!");
 		}
 		
 		return false;
