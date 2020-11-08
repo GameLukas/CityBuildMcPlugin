@@ -9,10 +9,7 @@ import java.util.Random;
 import at.gamelukas.citybuild.commands.team.Fly;
 import at.gamelukas.citybuild.commands.team.GameMasterMode;
 import at.gamelukas.citybuild.commands.team.GameMasterModeTP;
-import at.gamelukas.citybuild.shop.AddShopItem;
-import at.gamelukas.citybuild.shop.InventoryListener;
-import at.gamelukas.citybuild.shop.OpenSellShop;
-import at.gamelukas.citybuild.shop.OpenShop;
+import at.gamelukas.citybuild.shop.*;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -166,6 +163,7 @@ public class Main extends JavaPlugin {
 		this.getCommand("buy").setExecutor(new OpenShop());
 		this.getCommand("sell").setExecutor(new OpenSellShop());
 		this.getCommand("addshopitem").setExecutor(new AddShopItem());
+		this.getCommand("shop").setExecutor(new ShopMenueGui());
 
 		Bukkit.getConsoleSender().sendMessage("§3GameLukasCB §9| §aEnabled");
 		if (config.getDouble("CB.Spawn.X") == 0) {

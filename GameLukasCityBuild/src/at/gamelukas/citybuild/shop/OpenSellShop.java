@@ -8,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -25,6 +26,11 @@ public class OpenSellShop implements CommandExecutor {
                 inv.addItem(genItem(material, config.getString("Shop.Item" + i + ".Name"), config.getDouble("Shop.Item" + i + ".price"), p, config.getDouble("Shop.Item" + i + ".pricediff")));
             }
             p.openInventory(inv);
+
+            if (strings.length == 1) {
+
+            }
+
             return false;
         }
 

@@ -65,7 +65,7 @@ public class InventoryListener implements Listener {
 
             }
             
-        } else  if (e.getInventory().getTitle() != null && e.getInventory().getTitle().equals("Verkaufen")) {
+        } else if (e.getInventory().getTitle() != null && e.getInventory().getTitle().equals("Verkaufen")) {
             e.setCancelled(true);
             FileConfiguration config = Main.getPlugin().getConfig();
             for (int i = 1; i <=  config.getInt("Shop.Items"); i++) {
@@ -109,6 +109,16 @@ public class InventoryListener implements Listener {
 
                 }
 
+            }
+        } else if (e.getInventory().getTitle() != null && e.getInventory().getTitle().equals("Shop")) {
+            e.setCancelled(true);
+            Player p = (Player) e.getWhoClicked();
+            if (e.getCurrentItem().getItemMeta().getDisplayName().equals("§aEinkaufen")) {
+                p.closeInventory();
+                p.performCommand("buy");
+            } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals("§aVerkaufen")) {
+                p.closeInventory();
+                p.performCommand("sell");
             }
         }
     }
