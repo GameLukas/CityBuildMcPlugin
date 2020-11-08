@@ -28,3 +28,6 @@ commands:
    fly:
    gmm:
    gmmtp:
+   buy:
+   addshopitem:
+   sell:

@@ -9,6 +9,11 @@ import java.util.Random;
 import at.gamelukas.citybuild.commands.team.Fly;
 import at.gamelukas.citybuild.commands.team.GameMasterMode;
 import at.gamelukas.citybuild.commands.team.GameMasterModeTP;
+import at.gamelukas.citybuild.shop.AddShopItem;
+import at.gamelukas.citybuild.shop.InventoryListener;
+import at.gamelukas.citybuild.shop.OpenSellShop;
+import at.gamelukas.citybuild.shop.OpenShop;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -16,6 +21,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import at.gamelukas.citybuild.commands.SetSpawn;
@@ -44,7 +50,12 @@ public class Main extends JavaPlugin {
 	CB.gmm
 
 	 */
-	
+
+	// Vault API
+	public static Economy econ = null;
+
+
+
 	public static Main plugin;
 	
 	static boolean wartungen = false;
@@ -128,6 +139,11 @@ public class Main extends JavaPlugin {
 			config.set("prefix", "§aCityBuild | ");
 		}
 
+		if (!setupEconomy()) {
+			System.out.println("Vault nicht gefunden!");
+			Bukkit.shutdown();
+		}
+
 		//save
 		saveConfig();
 
@@ -147,6 +163,9 @@ public class Main extends JavaPlugin {
 		this.getCommand("fly").setExecutor(new Fly());
 		this.getCommand("gmm").setExecutor(new GameMasterMode());
 		this.getCommand("gmmtp").setExecutor(new GameMasterModeTP());
+		this.getCommand("buy").setExecutor(new OpenShop());
+		this.getCommand("sell").setExecutor(new OpenSellShop());
+		this.getCommand("addshopitem").setExecutor(new AddShopItem());
 
 		Bukkit.getConsoleSender().sendMessage("§3GameLukasCB §9| §aEnabled");
 		if (config.getDouble("CB.Spawn.X") == 0) {
@@ -160,6 +179,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
 		Bukkit.getPluginManager().registerEvents(new Inventory(), this);
 		Bukkit.getPluginManager().registerEvents(new CraftEvent(), this);
+		Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
 
 
 
@@ -313,6 +333,23 @@ public class Main extends JavaPlugin {
 		}, 72000, 72000);
 		
 
+	}
+
+	//Vault
+	private boolean setupEconomy() {
+		if (getServer().getPluginManager().getPlugin("Vault") == null) {
+			return false;
+		}
+		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+		if (rsp == null) {
+			return false;
+		}
+		econ = rsp.getProvider();
+		return econ != null;
+	}
+
+	public static Economy getEconomy() {
+		return econ;
 	}
 
 	public static Main getPlugin() {
