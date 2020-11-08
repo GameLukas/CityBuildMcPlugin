@@ -22,26 +22,27 @@ public class OpenSellShop implements CommandExecutor {
             FileConfiguration config = Main.getPlugin().getConfig();
             for (int i = 1; i <= config.getInt("Shop.Items"); i++) {
                 Material material = Material.getMaterial(config.getString("Shop.Item" + i + ".Material"));
-                inv.addItem(genItem(material, config.getString("Shop.Item" + i + ".Name"), config.getDouble("Shop.Item" + i + ".price"), p));
+                inv.addItem(genItem(material, config.getString("Shop.Item" + i + ".Name"), config.getDouble("Shop.Item" + i + ".price"), p, config.getDouble("Shop.Item" + i + ".pricediff")));
             }
             p.openInventory(inv);
             return false;
         }
 
 
-        public ItemStack genItem(Material material, String name, double price, Player p) {
+        public ItemStack genItem(Material material, String name, double price, Player p, double difference) {
             ItemStack item = new ItemStack(material);
             ItemMeta meta = item.getItemMeta();
             meta.setDisplayName(name);
             ArrayList<String> lore = new ArrayList<>();
-            lore.add("§a1x Preis: " + price + "€");
+            lore.add("§a1x Preis: " + (price - difference) + "€");
             int counter = 0;
             for (ItemStack is: p.getInventory().getContents()) {
                 if (is != null && is.getType() == material) {
                     counter += is.getAmount();
                 }
             }
-            lore.add("§a" + counter + "x Preis: " + price * counter + "€");
+            FileConfiguration config = Main.getPlugin().getConfig();
+            lore.add("§a" + counter + "x Preis: " + (price - difference) * counter + "€");
             meta.setLore(lore);
             item.setItemMeta(meta);
             return item;

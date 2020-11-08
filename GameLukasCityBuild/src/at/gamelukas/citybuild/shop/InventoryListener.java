@@ -13,6 +13,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+import java.util.HashMap;
+
 public class InventoryListener implements Listener {
     @EventHandler
     public void onClickInv (final InventoryClickEvent e) {
@@ -33,16 +35,23 @@ public class InventoryListener implements Listener {
                         if (money >= config.getDouble("Shop.Item" + i + ".price") * 64) {
                             Main.getEconomy().withdrawPlayer(p, config.getInt("Shop.Item" + i + ".price") * 64);
                             PlayerInventory inv = p.getInventory();
-                            inv.addItem(new ItemStack(Material.getMaterial(config.getString("Shop.Item" + i + ".Material")), 64));
+                            HashMap<Integer, ItemStack> overflowItems = inv.addItem(new ItemStack(Material.getMaterial(config.getString("Shop.Item" + i + ".Material")), 64));
+                            if (!overflowItems.isEmpty()) {
+                                Main.getEconomy().depositPlayer(p, config.getInt("Shop.Item" + i + ".price") * overflowItems.get(0).getAmount());
+                            }
                             p.sendMessage(Main.getPrefix() + "§7neuer Kontostand: §a" + Main.getEconomy().getBalance(p) + "€");
                         } else {
                             p.sendMessage(Main.getPrefix() + "§cDu hast zu wenig Geld!");
                         }
                     } else {
                         if (money >= config.getDouble("Shop.Item" + i + ".price")) {
-                            Main.getEconomy().withdrawPlayer(p, config.getInt("Shop.Item" + i + ".price"));
+
                             PlayerInventory inv = p.getInventory();
-                            inv.addItem(new ItemStack(Material.getMaterial(config.getString("Shop.Item" + i + ".Material")), 1));
+                            if (inv.addItem(new ItemStack(Material.getMaterial(config.getString("Shop.Item" + i + ".Material")), 1)).isEmpty()) {
+                                Main.getEconomy().withdrawPlayer(p, config.getInt("Shop.Item" + i + ".price"));
+                            } else {
+                                p.sendMessage(Main.getPrefix() + "§cDu hast keinen Platz im Inventar");
+                            }
                             p.sendMessage(Main.getPrefix() + "§7neuer Kontostand: §a" + Main.getEconomy().getBalance(p) + "€");
                         } else {
                             p.sendMessage(Main.getPrefix() + "§cDu hast zu wenig Geld!");
@@ -76,7 +85,7 @@ public class InventoryListener implements Listener {
                                     counter += is.getAmount();
                                 }
                             }
-                            Main.getEconomy().depositPlayer(p, config.getDouble("Shop.Item" + i + ".price") * counter);
+                            Main.getEconomy().depositPlayer(p, (config.getDouble("Shop.Item" + i + ".price") - config.getDouble("Shop.Item" + i + ".pricediff") )* counter);
                             PlayerInventory inv = p.getInventory();
                             p.getInventory().removeItem(new ItemStack(Material.getMaterial(config.getString("Shop.Item" + i + ".Material")), counter));
                             p.sendMessage(Main.getPrefix() + "§7neuer Kontostand: §a" + Main.getEconomy().getBalance(p) + "€");
@@ -86,7 +95,7 @@ public class InventoryListener implements Listener {
 
                     } else {
                         if (p.getInventory().contains(Material.getMaterial(config.getString("Shop.Item" + i + ".Material")))) {
-                            Main.getEconomy().depositPlayer(p, config.getDouble("Shop.Item" + i + ".price"));
+                            Main.getEconomy().depositPlayer(p, config.getDouble("Shop.Item" + i + ".price") - config.getDouble("Shop.Item" + i + ".pricediff"));
                             PlayerInventory inv = p.getInventory();
                             p.getInventory().removeItem(new ItemStack(Material.getMaterial(config.getString("Shop.Item" + i + ".Material")), 1));
                             p.sendMessage(Main.getPrefix() + "§7neuer Kontostand: §a" + Main.getEconomy().getBalance(p) + "€");
